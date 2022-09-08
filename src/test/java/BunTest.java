@@ -34,7 +34,7 @@ public class BunTest {
     @Test
     public void getPriceTests(){
         Bun bun = new Bun(name, price);
-        Assert.assertEquals(price, bun.getPrice(), 0.001);
+        Assert.assertEquals(price, bun.getPrice(), Utils.PRICE_DELTA);
     }
 
 }

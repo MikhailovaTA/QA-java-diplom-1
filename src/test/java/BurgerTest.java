@@ -34,48 +34,48 @@ public class BurgerTest {
     Ingredient ingredient3;
 
     @Test
-    public void setBunTest(){
+    public void setBunTest() {
         burger.setBuns(bun);
-        Assert.assertEquals(bun,burger.bun);
+        Assert.assertEquals(bun, burger.bun);
     }
 
     @Test
-    public void addIngredientTest(){
+    public void addIngredientTest() {
         Assert.assertTrue(burger.ingredients.isEmpty());
         burger.addIngredient(ingredient);
-        Assert.assertEquals(1,burger.ingredients.size());
-        Assert.assertEquals(ingredient,burger.ingredients.get(0));
+        Assert.assertEquals(1, burger.ingredients.size());
+        Assert.assertEquals(ingredient, burger.ingredients.get(0));
     }
 
     @Test
-    public void removeIngredientTest(){
+    public void removeIngredientTest() {
         burger.addIngredient(ingredient);
         burger.removeIngredient(0);
         Assert.assertTrue(burger.ingredients.isEmpty());
     }
 
     @Test
-    public void moveIngredientTest(){
+    public void moveIngredientTest() {
         burger.addIngredient(ingredient);
         burger.addIngredient(ingredient2);
         burger.addIngredient(ingredient3);
         burger.moveIngredient(1, 2);
-        Assert.assertEquals(ingredient,burger.ingredients.get(0));
-        Assert.assertEquals(ingredient3,burger.ingredients.get(1));
-        Assert.assertEquals(ingredient2,burger.ingredients.get(2));
+        Assert.assertEquals(ingredient, burger.ingredients.get(0));
+        Assert.assertEquals(ingredient3, burger.ingredients.get(1));
+        Assert.assertEquals(ingredient2, burger.ingredients.get(2));
     }
 
     @Test
-    public void getPriceTest(){
+    public void getPriceTest() {
         Mockito.when(bun.getPrice()).thenReturn(100f);
         Mockito.when(ingredient.getPrice()).thenReturn(50f);
         burger.addIngredient(ingredient);
         burger.setBuns(bun);
-        Assert.assertEquals(250,burger.getPrice(), 0.001);
+        Assert.assertEquals(250, burger.getPrice(), Utils.PRICE_DELTA);
     }
 
     @Test
-    public void getReceiptTest(){
+    public void getReceiptTest() {
         Mockito.when(bun.getName()).thenReturn("white bun");
         Mockito.when(ingredient.getType()).thenReturn(SAUCE);
         Mockito.when(ingredient.getName()).thenReturn("chili sauce");
@@ -87,6 +87,6 @@ public class BurgerTest {
             "= sauce chili sauce =\r\n" +
             "(==== white bun ====)\r\n" +
             "\r\n" +
-            "Price: 700,000000\r\n",burger.getReceipt());
+            "Price: 700,000000\r\n", burger.getReceipt());
     }
 }
